@@ -1,37 +1,57 @@
-# Statisk Ray Tracing
+# Ray Tracer (Static)
 
-## Översikt
-En simpel statisk raytracer
+A compact, pure-Python ray tracer that renders a static 2D image of a 3D scene. The project is refactored into a clean package layout with tests and CI/CD workflows so it can be showcased as a production-ready portfolio piece.
 
-En statisk raytracer renderar en 2d bild som ögat ser genom att man simulerar
-en öga som står vid en punkt och kollar på ett 3d rum med en ljuskälla som lyser på olika objekt.
+![Render sample](res/Best_rendered_picture.png)
 
-Den fungerar på det sättet att istället för att simulera alla ljusstrålar från en ljuskälla så
-backtrackar man endast ljusstrålar som når ögat tillbaka till ljuskällan. I 3d rummet kan vi placera
-ut sfärer och en ljuskälla och med hjälp av raytracern rendera hur rummet ser ut från en viss punkt.
+## Features
 
-|![Renderad_bild](res/Best_rendered_picture.png)|
-|:--:| 
-| *Figur1. Exempel på renderad scen.* |
+- Pure Python implementation (no external runtime dependencies)
+- Blinn-Phong shading with ambient, diffuse, and specular components
+- Recursive reflections
+- Soft shadow approximation
+- Deterministic PPM output
 
+## Quickstart
 
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
 
-## Documentation
-Läs [Documentation.md](https://gits-15.sys.kth.se/grudat21/zeshen-ovn7/blob/master/Documentation.md) för dokumentationen. Den är för lång för att lägga till här.
+python -m ray_tracer --output render.ppm
+```
 
+The output is a standard ASCII PPM file. Most image viewers can open it directly, or you can convert it to PNG using your favorite tool.
 
+## Development
 
-### Roadmap
+```bash
+pytest
+ruff check src tests
+```
 
-* API:et av biblioteket är frusen.
-* Versionsnummer hänvisas till [Semantisk versionshantering][sv].
+## Docker
 
-Den enda acceptabla anledningen att modifiera API:et av paketet 
-är om man inte kan hantera problem på annat sätt.
+```bash
+docker build -t ray-tracer .
+docker run --rm -v \"$PWD\":/output ray-tracer --output /output/render.ppm
+```
 
+## CI/CD
 
-Zeshen Bao – [zeshen](https://gits-15.sys.kth.se/zeshen)
+- CI: Lint + tests on pushes and pull requests (`.github/workflows/ci.yml`).
+- CD: Build artifacts on tagged releases and attach them to GitHub releases (`.github/workflows/release.yml`).
 
-2021 VT
+## Project Layout
 
-[sv]: http://semver.org/
+```
+.
+|-- src/ray_tracer        # Core package
+|-- tests                # Pytest suite
+`-- res                  # Example renders
+```
+
+## License
+
+See `LICENSE`.
