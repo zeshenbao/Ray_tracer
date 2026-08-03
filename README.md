@@ -17,7 +17,7 @@ ut sfärer och en ljuskälla och med hjälp av raytracern rendera hur rummet ser
 
 
 ## Documentation
-Läs [Documentation.md](https://gits-15.sys.kth.se/grudat21/zeshen-ovn7/blob/master/Documentation.md) för dokumentationen. Den är för lång för att lägga till här.
+Läs [Documentation.md](https://github.com/zeshenbao/Ray_tracer/blob/master/Documentation.md) för dokumentationen. Den är för lång för att lägga till här.
 
 
 
